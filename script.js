@@ -20,14 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*** Identify LocalStorage Dark-Mode  ***/
 const darkMode_localStorage = localStorage.getItem("dark-mode");
-console.log(darkMode_localStorage)
 if (darkMode_localStorage == "true") {
   body.setAttribute("dark-mode", true)
-  console.log("entro")
   document.querySelector("input#btn-darkmode").checked = true;
 } else {
   body.setAttribute("dark-mode", false)
-  console.log("no entro")
   document.querySelector("input#btn-darkmode").checked = false;
 }
 
