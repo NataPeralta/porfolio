@@ -1,4 +1,5 @@
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+const contactForm = document.getElementById("contact-form");
 const btnDarkMode = document.getElementById("dark-mode")
 const rootBody = document.querySelector(':root');
 const body = document.body;
