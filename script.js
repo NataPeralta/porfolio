@@ -42,17 +42,62 @@ btnDarkMode.addEventListener('click', (e) => {
   }
 });
 
+/** Message from From **/
+function showContactFormMessage(message) {
+  contactForm.style.display = "none";
+  const thanks = document.createElement('p');
+  thanks.classList.add("secondary-text");
+  thanks.textContent = message;
+  contactForm.parentNode.insertBefore(thanks, contactForm.nextSibling);
+}
+
 /*** Contact Form  ***/
 (function() {emailjs.init('YfCUJRSx6CTqh38Be');})();
 window.onload = function() {
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    this.contact_number.value = Math.random() * 100000 | 0;
-    emailjs.sendForm("service_69prf2i", "template_ly3nmid", this)
-      .then(function() {
-        console.log('SUCCESS!');
-      }, function(error) {
-        console.log('FAILED...', error);
-      });
+contactForm.addEventListener('submit', function(event) {
+event.preventDefault();
+this.contact_number.value = Math.random() * 100000 | 0;
+emailjs.sendForm("service_69prf2i", "template_ly3nmid", this)
+  .then(function() {
+    showContactFormMessage('¡Thank you very much! We will be in touch.')
+  }, function(error) {
+    showContactFormMessage('¡There was an error! Please refresh the page and try again.');
+  });
+})
+}
+
+/** Apply GrayScale if Centered Horizontal < 767 ViewPort **/
+function isElementCenteredInView(element) {
+  const bounding = element.getBoundingClientRect();
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const elementHeight = bounding.height;
+  const elementCenterY = bounding.top + elementHeight / 2;
+  const isCenteredVertically = Math.abs(viewportHeight / 2 - elementCenterY) < (elementHeight / 2 + 30);
+
+  return isCenteredVertically;
+}
+
+function applyGrayscaleToCenteredElements() {
+  const links = document.querySelectorAll('.proyects-items a');
+
+  links.forEach(link => {
+    if (isElementCenteredInView(link)) {
+      link.querySelector('img').style.filter = 'grayscale(0)';
+    } else {
+      link.querySelector('img').style.filter = ''; // Elimina el filtro si el enlace no está centrado verticalmente
+    }
   });
 }
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth < 767) {
+    window.addEventListener('scroll', applyGrayscaleToCenteredElements);
+  }
+});
+
+if (window.innerWidth < 767) {
+  window.addEventListener('scroll', applyGrayscaleToCenteredElements);
+}
+  
+
+
