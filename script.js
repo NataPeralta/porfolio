@@ -83,8 +83,10 @@ function applyGrayscaleToCenteredElements() {
   links.forEach(link => {
     if (isElementCenteredInView(link)) {
       link.querySelector('img').style.filter = 'grayscale(0)';
+      link.querySelector('img').style.transform = 'scale(1.05)';
     } else {
-      link.querySelector('img').style.filter = ''; // Elimina el filtro si el enlace no está centrado verticalmente
+      link.querySelector('img').style.filter = '';
+      link.querySelector('img').style.transform = '';
     }
   });
 }
