@@ -74,11 +74,9 @@ function applyGrayscaleToCenteredElements() {
   const links = document.querySelectorAll('.proyects-items a');
   links.forEach(link => {
     if (isElementCenteredInView(link)) {
-      link.querySelector('img').style.filter = 'grayscale(0)';
-      link.querySelector('img').style.transform = 'scale(1.05)';
+      link.querySelector('img').classList.add('inView');
     } else {
-      link.querySelector('img').style.filter = '';
-      link.querySelector('img').style.transform = '';
+      link.querySelector('img').classList.remove('inView');
     }
   });
 }
