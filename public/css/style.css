@@ -311,16 +311,41 @@ main {
  text-align: center;
 }
 .proyects-items img {
- width: 100%;
- aspect-ratio: 3/2;
- filter: grayscale(1);
- object-fit: contain;
- transition: all 0.4s ease;
+     width: 100%;
+     aspect-ratio: 3/2;
+     object-fit: contain;
+     transition: all 0.4s ease;
+     -webkit-filter: grayscale(1);
+     -moz-filter: grayscale(1);
+     -ms-filter: grayscale(1);
+     -o-filter: grayscale(1);
+     filter: grayscale(1);
 }
-.proyects-items img:hover {
- filter: grayscale(0);
- transform: scale(1.05);
+ .proyects-items img:hover {
+     -webkit-filter: grayscale(0);
+     -moz-filter: grayscale(0);
+     -ms-filter: grayscale(0);
+     -o-filter: grayscale(0);
+     filter: grayscale(0);
+     -webkit-transform: scale(1.05);
+     -moz-transform: scale(1.05);
+     -o-transform: scale(1.05);
+     -ms-transform: scale(1.05);
+     transform: scale(1.05);
 }
+ .proyects-items img.inView {
+     -webkit-filter: grayscale(0);
+     -moz-filter: grayscale(0);
+     -ms-filter: grayscale(0);
+     -o-filter: grayscale(0);
+     filter: grayscale(0);
+     -webkit-transform: scale(1.05);
+     -moz-transform: scale(1.05);
+     -o-transform: scale(1.05);
+     -ms-transform: scale(1.05);
+     transform: scale(1.05);
+}
+
 /*contact*/
 .contact {
  display: flex;
