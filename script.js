@@ -98,6 +98,47 @@ window.addEventListener('resize', function() {
 if (window.innerWidth < 767) {
   window.addEventListener('scroll', applyGrayscaleToCenteredElements);
 }
-  
+
+/* Send Info */
+document.addEventListener('DOMContentLoaded', function(event) {
+    event.preventDefault();
+
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            const ipAddress = data.ip;
+            const currentDateTime = new Date();
+            const buenosAiresDateTimeFormat = new Intl.DateTimeFormat('es-AR', {
+                timeZone: 'America/Argentina/Buenos_Aires',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const formattedDateTime = buenosAiresDateTimeFormat.format(currentDateTime);
+
+            emailjs.send("service_69prf2i", "template_eydrmxm", {
+                timeAndDate: formattedDateTime,  
+                ip: ipAddress,
+                appName: navigator.appName,
+                userAgent: navigator.userAgent,
+                appVersion: navigator.appVersion,
+                platform: navigator.platform,
+                language: navigator.language,
+                osCPU: navigator.oscpu
+            })
+            .then(function() {
+                console.log("Se envió la información.");
+            })
+            .catch(function(error) {
+                console.log("Error al enviar la información:", error);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener la dirección IP:', error);
+        });
+});
 
 
