@@ -80,14 +80,16 @@ function applyGrayscaleToCenteredElements() {
     }
   });
 }
-window.addEventListener('resize', function() {
-  if (window.innerWidth < 767) {
-    window.addEventListener('scroll', applyGrayscaleToCenteredElements);
-  }
-});
-if (window.innerWidth < 767) {
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+if (isMobileDevice()) {
   window.addEventListener('scroll', applyGrayscaleToCenteredElements);
 }
+
+
+
 /* Send Info */
 document.addEventListener('DOMContentLoaded', function(event) {
   event.preventDefault();
