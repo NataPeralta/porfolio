@@ -89,7 +89,6 @@ if (isMobileDevice()) {
 }
 
 
-
 /* Send Info */
 document.addEventListener('DOMContentLoaded', function(event) {
   event.preventDefault();
